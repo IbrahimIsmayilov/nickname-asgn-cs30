@@ -13,16 +13,20 @@ names_and_nicknames = {
     "nicknames": ["The Butcher", "The Giant", "The Lion"]
 }
 
+# Generating a random nickname
 def random_nickname():
     random_index = random.randint(0, len(names_and_nicknames["nicknames"]) - 1)
     random_nickname = names_and_nicknames["nicknames"][random_index]
     return random_nickname
 
+
+# Checking if a given nickname already exists in a list
 def check_nickname(added_new_nickname):
-    for i in range(len(names_and_nicknames["nicknames"]) - 1):
+    for i in range(len(names_and_nicknames["nicknames"])):
         if names_and_nicknames["nicknames"][i] == added_new_nickname:
                 return i
     return -1
+
 
 # Menu Loop
 loop = True
@@ -59,7 +63,7 @@ while loop:
         print("\nADD A NICKNAME")
         new_nickname = input("Please enter a nickname to add:")
         index = check_nickname(new_nickname)
-        if (index == -1):
+        if index == -1:
             names_and_nicknames["nicknames"].append(new_nickname)
             print(f"{new_nickname} is added to the nickname list.")
         else: 
@@ -67,12 +71,24 @@ while loop:
     elif selection == "5":
         print("\nEDIT A NICKNAME")
         edit_nickname = input("Please enter a nickname to edit:")
-        new_nickname = input("Please enter the new nickanem to add:")
+        new_nickname = input("Please enter the new nickname to add:")
         index = check_nickname(edit_nickname)
         if index == -1:
-            print(f"{edit_nickname} was not found in the nickname list")
+            print(f"{edit_nickname} was not found in the nickname list.")
         else:
-            names_and_nicknames["nicknames"][index] == new_nickname
+            print(f"{edit_nickname} was edited and is now {new_nickname}.")
+            names_and_nicknames["nicknames"][index] = new_nickname
+    elif selection == "6":
+        print("\nREMOVE A NICKNAME")
+        remove_nickname = input("Please enter a nickname to remove:")
+        index = check_nickname(remove_nickname)
+        if index == -1:
+            print(f"{remove_nickname} was not found in the nickname list.")
+        else: 
+            names_and_nicknames["nicknames"].pop(index)
+            print(f"{remove_nickname} was removed from the nickname list.")
+    elif selection == "7":
+        loop = False
             
         
 
